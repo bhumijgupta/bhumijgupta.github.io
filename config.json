@@ -1,0 +1,16 @@
+{
+    "theme": "dark",
+    "name": "bhumij gupta",
+    "profilePhoto": "static/pic.jpeg",
+    "resumeLink": "static/pic.jpeg",
+    "about": [
+       "Run panda-portfolio"
+      ],
+  "links":{
+    "github":"",
+    "linkedin":"",
+    "medium":"",
+    "facebook":"",
+    "instagram":""
+  }
+}
