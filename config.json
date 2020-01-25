@@ -1,16 +1,16 @@
 {
-    "theme": "dark",
-    "name": "bhumij gupta",
-    "profilePhoto": "static/pic.jpeg",
-    "resumeLink": "static/pic.jpeg",
-    "about": [
-       "Run panda-portfolio"
-      ],
-  "links":{
-    "github":"",
-    "linkedin":"",
-    "medium":"",
-    "facebook":"",
-    "instagram":""
+  "theme": "dark",
+  "name": "bhumij gupta",
+  "profilePhoto": "static/pic.jpeg",
+  "resumeLink": "https://drive.google.com/open?id=1ITC878rGmd0RCTL9VP79YVXFqzq3SiY5",
+  "about": [
+    "Hardworking, adaptive and creative problem solver. Experienced graphic, UI designer and full stack developer. Fast learner and self motivated, thriving in environment with opportunity to learn and grow."
+  ],
+  "links": {
+    "github": "https://github.com/bhumijgupta/",
+    "linkedin": "https://www.linkedin.com/in/bhumijgupta",
+    "medium": "https://medium.com/@bhumijgupta",
+    "facebook": "https://www.facebook.com/bhumij.gupta",
+    "instagram": "https://www.instagram.com/bhumij_gupta/"
   }
 }
