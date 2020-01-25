@@ -1,0 +1,26 @@
+name: panda-portfolio CI
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+
+jobs:
+  build:
+    name: Build Site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Run panda-portfolio
+        run: |
+          npx panda-portfolio config.json
+      - name: Commit to branch
+        run: |
+          git add .
+          git config --global user.name 'panda-portfolio-ci'
+          git config --global user.email 'panda-portfolio-ci@users.noreply.github.com'
+          git commit -m "Sync ${{github.event.head_commit.message}}"
+          git push -u origin ${GITHUB_REF##*/}
