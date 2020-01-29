@@ -1,6 +1,7 @@
 name: panda-portfolio CI
 on:
   push:
+    # Do not run if there are only changes to **.md file
     paths-ignore:
       - "**.md"
 
@@ -17,10 +18,20 @@ jobs:
       - name: Run panda-portfolio
         run: |
           npx panda-portfolio config.json
-      - name: Commit to branch
+      - name: Commit changes
+        # Check if git tree is dirty, then commit and push
         run: |
-          git add .
-          git config --global user.name 'panda-portfolio-ci'
-          git config --global user.email 'panda-portfolio-ci@users.noreply.github.com'
-          git commit -m "Sync ${{github.event.head_commit.message}}"
-          git push -u origin ${GITHUB_REF##*/}
+          if output=$(git status --porcelain) && [ -z "$output" ]; then
+              echo "No changes to commit"
+          else 
+              git add .
+              git config --global user.name 'panda-portfolio-ci'
+              git config --global user.email 'panda-portfolio-ci@users.noreply.github.com'
+              git commit -m "[CI bot] Sync ${{github.event.head_commit.message}}"
+              git push -u origin ${GITHUB_REF##*/}
+              echo "Requesting page rebuild"
+              curl -X POST \
+                --header 'Accept: application/vnd.github.mister-fantastic-preview+json' \
+                -u "${{github.event.repository.owner.name}}":"${{secrets.PAT_TOKEN}}" \
+                'https://api.github.com/repos/${{github.repository}}/pages/builds'
+          fi
